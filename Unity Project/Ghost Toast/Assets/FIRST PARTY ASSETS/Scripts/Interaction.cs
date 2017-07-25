@@ -45,19 +45,7 @@ public class Interaction : MonoBehaviour
 			canPickUp = false;
 		}
 
-		if (grab.tag == "PickUp") 
-		{
-			cursorBig.SetActive (true);
-			cursorSmall.SetActive (false);
-		} else if (grab.tag == "Door") 
-		{
-			cursorBig.SetActive (true);
-			cursorSmall.SetActive (false);
-		} else 
-		{
-			cursorBig.SetActive (false);
-			cursorSmall.SetActive (true);
-		}
+		ReticleResize ();
 
 		if (handsFull == false) 
 		{
@@ -83,6 +71,18 @@ public class Interaction : MonoBehaviour
 				grab.GetComponent<Rigidbody> ().useGravity = true;
 				handsFull = false;
 			}
+		}
+	}
+
+	void ReticleResize ()
+	{
+		if (grab.tag == "PickUp" || grab.tag == "Door") {
+			cursorBig.SetActive (true);
+			cursorSmall.SetActive (false);
+		} else
+		{
+			cursorBig.SetActive (false);
+			cursorSmall.SetActive (true);
 		}
 	}
 }
