@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour 
 {
+	
 	public GameObject grab;
+	public GameObject cursorSmall;
+	public GameObject cursorBig;
+
 	private bool handsFull = false;
 	private bool canPickUp = false;
 
@@ -40,8 +45,23 @@ public class Interaction : MonoBehaviour
 			canPickUp = false;
 		}
 
+		if (grab.tag == "PickUp") 
+		{
+			cursorBig.SetActive (true);
+			cursorSmall.SetActive (false);
+		} else if (grab.tag == "Door") 
+		{
+			cursorBig.SetActive (true);
+			cursorSmall.SetActive (false);
+		} else 
+		{
+			cursorBig.SetActive (false);
+			cursorSmall.SetActive (true);
+		}
+
 		if (handsFull == false) 
 		{
+		// Finds if the player is looking at a pick up or a door
 			if (Input.GetKeyDown (KeyCode.Mouse0)) 
 			{
 				if (grab.tag == "PickUp") 
